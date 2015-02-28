@@ -1,5 +1,4 @@
 class DeviseCreateUserLogins < ActiveRecord::Migration
-
   def up
     create_table :user_logins do |t|
       t.integer :user_id
@@ -16,5 +15,4 @@ class DeviseCreateUserLogins < ActiveRecord::Migration
   def down
     drop_table :user_logins
   end
-
 end

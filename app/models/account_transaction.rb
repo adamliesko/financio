@@ -3,9 +3,7 @@ class AccountTransaction < ActiveRecord::Base
   belongs_to :account
   after_create :check_account_total
 
-  def category_name
-    category.name
-  end
+  delegate :name, to: :category, prefix: true
 
   def check_account_total
     account.check_total_value

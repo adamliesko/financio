@@ -4,7 +4,7 @@ class AccountTransactionsController < ApplicationController
   def index
     transactions
     respond_to do |format|
-      format.json { render :json => @transactions, :methods => :category_name}
+      format.json { render json: @transactions, methods: :category_name }
     end
   end
 

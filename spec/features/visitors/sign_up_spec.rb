@@ -3,7 +3,6 @@
 #   I want to sign up
 #   So I can visit protected areas of the site
 feature 'Sign Up', :deviser do
-
   # Scenario: Visitor can sign up with valid email address and password
   #   Given I am not signed in
   #   When I sign up with a valid email address and password
@@ -38,7 +37,7 @@ feature 'Sign Up', :deviser do
   #   Then I see a 'too short password' message
   scenario 'visitor cannot sign up with a short password' do
     sign_up_with('test@example.com', 'please', 'please')
-    expect(page).to have_content "Password is too short"
+    expect(page).to have_content 'Password is too short'
   end
 
   # Scenario: Visitor cannot sign up without password confirmation
@@ -58,5 +57,4 @@ feature 'Sign Up', :deviser do
     sign_up_with('test@example.com', 'please123', 'mismatch')
     expect(page).to have_content "Password confirmation doesn't match"
   end
-
 end
