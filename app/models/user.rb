@@ -13,5 +13,4 @@ class User < ActiveRecord::Base
   has_many :logins, class_name: 'UserLogin'
   has_many :accounts
 
-  validates_uniqueness_of :name, :scope => :user_id
 end

@@ -20,3 +20,8 @@
 //= require ng-table/dist/ng-table.min
 //= require bootstrap-datepicker
 //= require_tree .
+
+$(document).ready(function(){
+    $('.dp').datepicker(
+        {autoclose:true});
+});
