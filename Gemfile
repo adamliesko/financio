@@ -25,6 +25,7 @@ gem 'bootstrap-editable-rails'
 gem 'best_in_place'
 gem "font-awesome-rails"
 gem 'bower-rails'
+gem 'bootstrap-datepicker-rails'
 group :development do
   gem 'better_errors'
   gem 'rails_layout'

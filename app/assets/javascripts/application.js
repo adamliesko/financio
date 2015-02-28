@@ -18,4 +18,5 @@
 //= require angular/angular
 //= require angular-resource/angular-resource.min
 //= require ng-table/dist/ng-table.min
+//= require bootstrap-datepicker
 //= require_tree .

@@ -1,11 +1,13 @@
-<h2>
-  <%= @account.name %>'s transactions
-</h2>
-<h3 class="<%= @account.total > 0 ? 'positive' : (@account.total < 0 ? 'negative':'' )%>">
-  Total :  <%= @account.total %>
-</h3>
 <div class="row">
+
+  <h2>
+    <%= @account.name %>'s transactions
+  </h2>
   <div class="col-md-8">
+
+    <h3 class="<%= @account.total > 0 ? 'positive' : (@account.total < 0 ? 'negative':'' )%>">
+      Total :  <%= @account.total %>
+    </h3>
     <div class="transactions" ng-app="financio" ng-controller="TransactionsCtrl" ng-cloak="true" ng-init="init('<%= @account.id %>')">
       <table class="table" ng-table="transactionsTable" show-filter="true">
         <tr ng-repeat="transaction in $data track by $index">
@@ -38,22 +40,33 @@
     </div>
   </div>
   <div class="col-md-4">
-    <%= form_for(@transaction=AccountTransaction.new,  :url => create_account_account_transaction_path(@transaction), :html => { :role => 'form'}) do |f| %>
+    <%= form_for(@transaction=AccountTransaction.new, :url => account_account_transactions_path(@account,@transaction), :html => { :role => 'form'}) do |f| %>
         <h3>Add new Transaction</h3>
+        <div class="form-group">
+          <%= f.label :cateogry %>
+          <%= f.text_field :category, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :value %>
+          <%= f.text_field :value, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :purpose %>
+          <%= f.text_field :purpose, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :subject %>
+          <%= f.text_field :subject, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :transaction_date %>
+          <%= f.text_field :transaction_date , :data => {:provide => "datepicker"} %>
 
-        <div class="form-group">
-          <%= f.label :email %>
-          <%= f.email_field :email, class: 'form-control' %>
         </div>
-        <div class="form-group">
-          <%= f.label :password %>
-          <%= f.password_field :password, class: 'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, class: 'form-control' %>
-        </div>
-        <%= f.submit 'Add new transaction', :class => 'button right' %>
+
+
+
+        <%= f.submit 'Add new transaction', :class => 'btn btn-success' %>
     <% end %>
   </div>
 </div>

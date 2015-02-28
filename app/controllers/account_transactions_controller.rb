@@ -9,12 +9,14 @@ class AccountTransactionsController < ApplicationController
   end
 
   def create
-    account_transaction = AccountTransaction.new(account_transaction_params)
-    if account_transaction.save
+    category = Category.find_or_create_by(:name => params[:account_transaction][:category])
+   @transaction = AccountTransaction.new(transaction_params.merge(account_id: params[:account_id], category: category))
+    if @transaction.save
       redirect_to account, :notice => "Transaction added"
     else
       redirect_to account, :notice => "Your transaction has not been added, sorry :("
-  end
+    end
+   end
 
   private
 
@@ -28,5 +30,9 @@ class AccountTransactionsController < ApplicationController
 
   def transactions
     @transactions = account.account_transactions
+  end
+
+  def transaction_params
+    params.require(:account_transaction).permit(:subject, :value,:purpose, :transaction_date, :category)
   end
 end
