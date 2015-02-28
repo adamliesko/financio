@@ -13,4 +13,24 @@
       </table>
     </div>
   </div>
+
+  <div class="authform">
+    <%= form_for(@user=User.new,  :url => create_user_path(@user), :html => { :role => 'form'}) do |f| %>
+        <h3>Create User</h3>
+
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.email_field :email, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
+        </div>
+        <%= f.submit 'create', :class => 'button right' %>
+    <% end %>
+  </div>
 </div>

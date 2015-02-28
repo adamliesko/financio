@@ -15,6 +15,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to users_path, :notice => "User created."
+    else
+      redirect_to users_path, :alert => "Unable to create user."
+    end
+
+  end
+
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(secure_params)
@@ -40,6 +50,10 @@ class UsersController < ApplicationController
 
   def secure_params
     params.require(:user).permit(:role)
+  end
+
+  def user_params
+    params.require(:user).permit(:email, :password, :password_confirmation)
   end
 
 end
