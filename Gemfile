@@ -28,7 +28,6 @@ gem 'bootstrap-datepicker-rails'
 gem 'mandrill_mailer'
 gem 'delayed_job_active_record'
 gem 'daemons'
-gem 'reek'
 
 group :development do
   gem 'better_errors'
@@ -42,6 +41,7 @@ group :development, :test do
   gem 'pry-rescue'
   gem 'rspec-rails'
   gem 'rubocop'
+  gem 'reek'
 end
 group :production do
   gem 'rails_12factor'
