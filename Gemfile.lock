@@ -103,9 +103,6 @@ GEM
     devise-stalkable (0.0.1)
       devise (>= 3.0.0)
       rails (>= 3.1.0)
-    devise_security_extension (0.8.0)
-      devise (>= 2.0.0)
-      rails (>= 3.1.1)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     excon (0.44.3)
@@ -298,7 +295,6 @@ DEPENDENCIES
   delayed_job_active_record
   devise
   devise-stalkable
-  devise_security_extension
   factory_girl_rails
   faker
   font-awesome-rails

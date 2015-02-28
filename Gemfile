@@ -15,7 +15,6 @@ group :development, :test do
 end
 gem 'bootstrap-sass'
 gem 'devise'
-gem 'devise_security_extension'
 gem 'devise-stalkable'
 
 gem 'pg'

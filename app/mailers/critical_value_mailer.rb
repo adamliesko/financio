@@ -8,6 +8,6 @@ class CriticalValueMailer< MandrillMailer::MessageMailer
                   important: true,
                   inline_css: true
   end
-  
+
   #handle_asynchronously :notification
 end
