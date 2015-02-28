@@ -29,7 +29,7 @@
           <td data-title="'Category'" sortable="'category_name'" filter="{'category_name':'text'}">
             {{transaction.category_name}}
           </td>
-          <td data-title="'Value'" sortable="'value'">
+          <td ng-class="transaction.value > 0 ? 'positive' : (transaction.value < 0 ? 'negative': '')"data-title="'Value'" sortable="'value'">
             {{transaction.value}}
           </td>
           <td data-title="'Subject'" sortable="'subject'">
@@ -71,10 +71,7 @@
         <div class="form-group">
           <%= f.label :transaction_date %>
           <%= f.text_field :transaction_date, class: 'dp', :data => {:provide => "datepicker"}, :required => true %>
-
         </div>
-
-
 
         <%= f.submit 'Add new transaction', :class => 'btn btn-success' %>
     <% end %>
