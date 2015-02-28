@@ -29,7 +29,7 @@
         <td data-title="'Purpose'" sortable="'purpose'">
           {{transaction.purpose}}
         </td>
-        <td data-title="'Date'" sortable="'date'">
+        <td data-title="'Date'" sortable="'transaction_date'">
           {{transaction.transaction_date}}
         </td>
         </tr>
@@ -43,12 +43,12 @@
     <%= form_for(@transaction=AccountTransaction.new, :url => account_account_transactions_path(@account,@transaction), :html => { :role => 'form'}) do |f| %>
         <h3>Add new Transaction</h3>
         <div class="form-group">
-          <%= f.label :cateogry %>
-          <%= f.text_field :category, class: 'form-control' %>
+          <%= f.label :category %>
+          <%= f.text_field :category, class: 'form-control',:required => true %>
         </div>
         <div class="form-group">
           <%= f.label :value %>
-          <%= f.text_field :value, class: 'form-control' %>
+          <%= f.number_field :value, class: 'form-control' ,:step => 'any',:required => true%>
         </div>
         <div class="form-group">
           <%= f.label :purpose %>
@@ -60,7 +60,7 @@
         </div>
         <div class="form-group">
           <%= f.label :transaction_date %>
-          <%= f.text_field :transaction_date , :data => {:provide => "datepicker"} %>
+          <%= f.text_field :transaction_date , :data => {:provide => "datepicker"},:required => true %>
 
         </div>
 
