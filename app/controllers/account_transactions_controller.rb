@@ -30,6 +30,7 @@ class AccountTransactionsController < ApplicationController
 
   def transactions
     @transactions = account.account_transactions
+    @transactions = @transactions.where(transaction_date: Date.strptime(params[:date_from], "%m/%d/%Y")..Date.strptime(params[:date_to],"%m/%d/%Y")) if (params[:date_to].present? && params[:date_from].present?)
   end
 
   def transaction_params

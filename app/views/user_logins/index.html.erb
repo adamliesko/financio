@@ -1,0 +1,18 @@
+<div class="container">
+  <h2>User Activity</h2>
+  <ol>
+    <% @user_logins.reverse.each do |login| %>
+        <li>
+          <p><i class="fa fa-sign-in"></i> You have logged in at <%= login.signed_in_at %></p>
+
+          <p><i class="fa fa-sign-out"></i>
+            <% if login.signed_out_at %>
+                You have logged out at <%= login.signed_out_at %>
+            <% else %>
+                This sessions has not been logged out yet
+            <% end %>
+          </p>
+        </li>
+    <% end %>
+  </ol>
+</div>

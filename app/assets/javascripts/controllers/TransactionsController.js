@@ -1,20 +1,27 @@
 var app = angular.module('financio');
 app.controller('TransactionsCtrl', ['$scope', '$resource','$location', 'ngTableParams', '$filter', 'TransactionsFactory', function ($scope, $resource,$location, ngTableParams, $filter, TransactionsFactory) {
 
+    $scope.parent = {dateFrom:'',dateTo:''};
 
     $scope.init = function(id)
     {
         $scope.accountId = id;
         console.log($scope.accountId);
 
-        $scope.getTransactions();
 
+
+    };
+
+    $scope.loadData = function() {
+        console.log(99);
+
+        $scope.getTransactions();
     };
 
     $scope.loading = false;
 
     $scope.getTransactions = function () {
-        $scope.transactions = TransactionsFactory.query({account_id: $scope.accountId});
+        $scope.transactions = TransactionsFactory.query({account_id: $scope.accountId,date_from: $scope.parent.dateFrom,date_to: $scope.parent.dateTo});
 
         $scope.transactions.$promise.then(function (data) {
             console.log($scope.transactions);
@@ -26,7 +33,7 @@ app.controller('TransactionsCtrl', ['$scope', '$resource','$location', 'ngTableP
                     number: 'id'     // initial sorting
                 }
             }, {
-                total: $scope.transactions.length, // length of data
+                total: data.length, // length of data
                 filterDelay: 100,
                 getData: function ($defer, params) {
                     var filteredData = params.filter() ?

@@ -1,14 +1,22 @@
 <div class="row">
 
-  <h2>
-    <%= @account.name %>'s transactions
-  </h2>
-  <div class="col-md-8">
 
+  <div class="col-md-8">
+    <h2>
+      <%= @account.name %>'s transactions
+    </h2>
     <h3 class="<%= @account.total > 0 ? 'positive' : (@account.total < 0 ? 'negative':'' )%>">
       Total :  <%= @account.total %>
     </h3>
+
+
     <div class="transactions" ng-app="financio" ng-controller="TransactionsCtrl" ng-cloak="true" ng-init="init('<%= @account.id %>')">
+      <label>Date from</label>
+      <input autoclose="true" ng-model="parent.dateFrom" data-provide="datepicker">
+      <label>Date to</label>
+      <input ng-model="parent.dateTo" data-provide="datepicker">
+      <button class="btn btn-success" ng-click="loadData()">Load transactions</button>
+
       <table class="table" ng-table="transactionsTable" show-filter="true">
         <tr ng-repeat="transaction in $data track by $index">
         <td data-title="'#'">
