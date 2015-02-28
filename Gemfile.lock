@@ -102,6 +102,7 @@ GEM
       rails (>= 3.1.1)
     diff-lcs (1.2.5)
     erubis (2.7.0)
+    excon (0.44.3)
     execjs (2.3.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -132,6 +133,13 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mandrill-api (1.0.53)
+      excon (>= 0.16.0, < 1.0)
+      json (>= 1.7.7, < 2.0)
+    mandrill_mailer (0.5.1)
+      actionpack
+      activesupport
+      mandrill-api (~> 1.0.9)
     method_source (0.8.2)
     mime-types (2.4.3)
     mini_portile (0.6.2)
@@ -289,6 +297,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   launchy
+  mandrill_mailer
   pg
   pry-rails
   pry-rescue
