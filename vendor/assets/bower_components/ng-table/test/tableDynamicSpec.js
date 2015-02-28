@@ -1,47 +1,47 @@
-describe('ng-table-dynamic', function() {
+describe('ng-table-dynamic', function () {
     var data = [
-        { id: 1, name: "Moroni", age: 50, money: -10 },
-        { id: 2, name: "Tiancum", age: 43, money: 120 },
-        { id: 3, name: "Jacob", age: 27, money: 5.5 },
-        { id: 4, name: "Nephi", age: 29, money: -54 },
-        { id: 5, name: "Enos", age: 34, money: 110 },
-        { id: 6, name: "Tiancum", age: 43, money: 1000 },
-        { id: 7, name: "Jacob", age: 27, money: -201 },
-        { id: 8, name: "Nephi", age: 29, money: 100 },
-        { id: 9, name: "Enos", age: 34, money: -52.5 },
-        { id: 10, name: "Tiancum", age: 43, money: 52.1 },
-        { id: 11, name: "Jacob", age: 27, money: 110 },
-        { id: 12, name: "Nephi", age: 29, money: -55 },
-        { id: 13, name: "Enos", age: 34, money: 551 },
-        { id: 14, name: "Tiancum", age: 43, money: -1410 },
-        { id: 15, name: "Jacob", age: 27, money: 410 },
-        { id: 16, name: "Nephi", age: 29, money: 100 },
-        { id: 17, name: "Enos", age: 34, money: -100 }
+        {id: 1, name: "Moroni", age: 50, money: -10},
+        {id: 2, name: "Tiancum", age: 43, money: 120},
+        {id: 3, name: "Jacob", age: 27, money: 5.5},
+        {id: 4, name: "Nephi", age: 29, money: -54},
+        {id: 5, name: "Enos", age: 34, money: 110},
+        {id: 6, name: "Tiancum", age: 43, money: 1000},
+        {id: 7, name: "Jacob", age: 27, money: -201},
+        {id: 8, name: "Nephi", age: 29, money: 100},
+        {id: 9, name: "Enos", age: 34, money: -52.5},
+        {id: 10, name: "Tiancum", age: 43, money: 52.1},
+        {id: 11, name: "Jacob", age: 27, money: 110},
+        {id: 12, name: "Nephi", age: 29, money: -55},
+        {id: 13, name: "Enos", age: 34, money: 551},
+        {id: 14, name: "Tiancum", age: 43, money: -1410},
+        {id: 15, name: "Jacob", age: 27, money: 410},
+        {id: 16, name: "Nephi", age: 29, money: 100},
+        {id: 17, name: "Enos", age: 34, money: -100}
     ];
 
     beforeEach(module('ngTable'));
 
     var scope;
-    beforeEach(inject(function($rootScope) {
+    beforeEach(inject(function ($rootScope) {
         scope = $rootScope.$new(true);
     }));
 
-    describe('basics', function(){
+    describe('basics', function () {
         var elm;
-        beforeEach(inject(function($compile, $q, NgTableParams) {
+        beforeEach(inject(function ($compile, $q, NgTableParams) {
             elm = angular.element(
-                    '<div>' +
-                    '<table ng-table-dynamic="tableParams with cols" show-filter="true">' +
-                    '<tr ng-repeat="user in $data">' +
-                    '<td ng-repeat="col in $columns">{{user[col.field]}}</td>' +
-                    '</tr>' +
-                    '</table>' +
-                    '</div>');
+                '<div>' +
+                '<table ng-table-dynamic="tableParams with cols" show-filter="true">' +
+                '<tr ng-repeat="user in $data">' +
+                '<td ng-repeat="col in $columns">{{user[col.field]}}</td>' +
+                '</tr>' +
+                '</table>' +
+                '</div>');
 
-            function getCustomClass(parmasScope){
-                if (parmasScope.$column.title().indexOf('Money') !== -1){
+            function getCustomClass(parmasScope) {
+                if (parmasScope.$column.title().indexOf('Money') !== -1) {
                     return 'moneyHeaderClass';
-                } else{
+                } else {
                     return 'customClass';
                 }
             }
@@ -60,7 +60,7 @@ describe('ng-table-dynamic', function() {
                 {
                     'class': getCustomClass,
                     field: 'name',
-                    filter: { name: 'text' },
+                    filter: {name: 'text'},
                     headerTitle: 'Sort by Name',
                     sortable: 'name',
                     show: true,
@@ -77,7 +77,7 @@ describe('ng-table-dynamic', function() {
                 {
                     'class': getCustomClass,
                     field: 'money',
-                    filter: { action: 'select' },
+                    filter: {action: 'select'},
                     headerTitle: 'Sort by Money',
                     filterData: money,
                     show: true,
@@ -89,7 +89,7 @@ describe('ng-table-dynamic', function() {
             scope.$digest();
         }));
 
-        it('should create table header', function() {
+        it('should create table header', function () {
             var thead = elm.find('thead');
             expect(thead.length).toBe(1);
 
@@ -111,7 +111,7 @@ describe('ng-table-dynamic', function() {
             expect(angular.element(filters[2]).hasClass('filter')).toBeTruthy();
         });
 
-        it('should create table header classes', inject(function($compile, $rootScope) {
+        it('should create table header classes', inject(function ($compile, $rootScope) {
 
             var thead = elm.find('thead');
             var rows = thead.find('tr');
@@ -130,7 +130,7 @@ describe('ng-table-dynamic', function() {
             expect(angular.element(titles[2]).hasClass('moneyHeaderClass')).toBeTruthy();
         }));
 
-        it('should create table header titles', function() {
+        it('should create table header titles', function () {
 
             var thead = elm.find('thead');
             var rows = thead.find('tr');
@@ -141,7 +141,7 @@ describe('ng-table-dynamic', function() {
             expect(angular.element(titles[2]).attr('title').trim()).toBe('Sort by Money');
         });
 
-        it('should show data-title-text', inject(function(NgTableParams) {
+        it('should show data-title-text', inject(function (NgTableParams) {
             var tbody = elm.find('tbody');
 
             scope.tableParams = new NgTableParams({
@@ -167,21 +167,21 @@ describe('ng-table-dynamic', function() {
         }));
     });
 
-    describe('title-alt', function() {
+    describe('title-alt', function () {
 
         var elm;
-        beforeEach(inject(function($compile, NgTableParams) {
+        beforeEach(inject(function ($compile, NgTableParams) {
             elm = angular.element(
-                    '<table ng-table-dynamic="tableParams with cols">' +
-                    '<tr ng-repeat="user in $data">' +
-                        '<td ng-repeat="col in $columns">{{user[col.field]}}</td>' +
-                    '</tr>' +
-                    '</table>');
+                '<table ng-table-dynamic="tableParams with cols">' +
+                '<tr ng-repeat="user in $data">' +
+                '<td ng-repeat="col in $columns">{{user[col.field]}}</td>' +
+                '</tr>' +
+                '</table>');
 
             scope.cols = [
-                { field: 'name',  title: 'Name of person', titleAlt: 'Name' },
-                { field: 'age',   title: 'Age',            titleAlt: 'Age' },
-                { field: 'money', title: 'Money',          titleAlt: '£' }
+                {field: 'name', title: 'Name of person', titleAlt: 'Name'},
+                {field: 'age', title: 'Age', titleAlt: 'Age'},
+                {field: 'money', title: 'Money', titleAlt: '£'}
             ];
             scope.tableParams = new NgTableParams({
                 page: 1, // show first page
@@ -195,7 +195,7 @@ describe('ng-table-dynamic', function() {
             scope.$digest();
         }));
 
-        it('should show as data-title-text', inject(function($compile) {
+        it('should show as data-title-text', inject(function ($compile) {
             var filterRow = angular.element(elm.find('thead').find('tr')[1]);
             var filterCells = filterRow.find('th');
 
@@ -211,30 +211,30 @@ describe('ng-table-dynamic', function() {
         }));
     });
 
-    describe('filters', function(){
+    describe('filters', function () {
 
         var elm;
-        beforeEach(inject(function($compile, NgTableParams) {
+        beforeEach(inject(function ($compile, NgTableParams) {
             elm = angular.element(
-                    '<table ng-table-dynamic="tableParams with cols" show-filter="true">' +
-                    '<tr ng-repeat="user in $data">' +
-                    '<td ng-repeat="col in $columns">{{user[col.field]}}</td>' +
-                    '</tr>' +
-                    '</table>');
+                '<table ng-table-dynamic="tableParams with cols" show-filter="true">' +
+                '<tr ng-repeat="user in $data">' +
+                '<td ng-repeat="col in $columns">{{user[col.field]}}</td>' +
+                '</tr>' +
+                '</table>');
         }));
 
-        describe('filter specified as alias', function(){
+        describe('filter specified as alias', function () {
 
-            beforeEach(inject(function($compile, NgTableParams) {
+            beforeEach(inject(function ($compile, NgTableParams) {
                 scope.cols = [
-                    { field: 'name', filter: {username: 'text'} }
+                    {field: 'name', filter: {username: 'text'}}
                 ];
                 scope.tableParams = new NgTableParams({}, {});
                 $compile(elm)(scope);
                 scope.$digest();
             }));
 
-            it('should render named filter template', function() {
+            it('should render named filter template', function () {
                 var inputs = elm.find('thead').find('tr').eq(1).find('th').find('input');
                 expect(inputs.length).toBe(1);
                 expect(inputs.eq(0).attr('type')).toBe('text');
@@ -251,18 +251,18 @@ describe('ng-table-dynamic', function() {
             });
         });
 
-        describe('multiple filter inputs', function(){
+        describe('multiple filter inputs', function () {
 
-            beforeEach(inject(function($compile, NgTableParams) {
+            beforeEach(inject(function ($compile, NgTableParams) {
                 scope.cols = [
-                    { field: 'name', filter: {name: 'text', age: 'text'} }
+                    {field: 'name', filter: {name: 'text', age: 'text'}}
                 ];
                 scope.tableParams = new NgTableParams({}, {});
                 $compile(elm)(scope);
                 scope.$digest();
             }));
 
-            it('should render filter template for each key/value pair ordered by key', function() {
+            it('should render filter template for each key/value pair ordered by key', function () {
                 var inputs = elm.find('thead').find('tr').eq(1).find('th').find('input');
                 expect(inputs.length).toBe(2);
                 expect(inputs.eq(0).attr('type')).toBe('text');
@@ -282,13 +282,13 @@ describe('ng-table-dynamic', function() {
             });
         });
 
-        describe('dynamic filter', function(){
+        describe('dynamic filter', function () {
 
             var ageFilter;
-            beforeEach(inject(function($compile, NgTableParams) {
+            beforeEach(inject(function ($compile, NgTableParams) {
 
-                ageFilter = { age: 'text'};
-                function getFilter(paramsScope){
+                ageFilter = {age: 'text'};
+                function getFilter(paramsScope) {
                     if (paramsScope.$column.title() === 'Name of user') {
                         return {username: 'text'};
                     } else if (paramsScope.$column.title() === 'Age') {
@@ -297,8 +297,8 @@ describe('ng-table-dynamic', function() {
                 }
 
                 scope.cols = [
-                    { field: 'name', title: 'Name of user', filter: getFilter },
-                    { field: 'age', title: 'Age', filter: getFilter }
+                    {field: 'name', title: 'Name of user', filter: getFilter},
+                    {field: 'age', title: 'Age', filter: getFilter}
                 ];
                 scope.tableParams = new NgTableParams({}, {});
 
@@ -307,7 +307,7 @@ describe('ng-table-dynamic', function() {
 
             }));
 
-            it('should render named filter template', function() {
+            it('should render named filter template', function () {
                 var usernameInput = elm.find('thead').find('tr').eq(1).find('th').eq(0).find('input');
                 expect(usernameInput.attr('type')).toBe('text');
                 expect(usernameInput.attr('name')).toBe('username');
@@ -328,7 +328,7 @@ describe('ng-table-dynamic', function() {
                 expect(ageInput.val()).toBe('10');
             });
 
-            it('should render new template as filter changes', inject(function($compile) {
+            it('should render new template as filter changes', inject(function ($compile) {
 
                 var scriptTemplate = angular.element(
                     '<script type="text/ng-template" id="ng-table/filters/number.html"><input type="number" name="{{name}}"/></script>');

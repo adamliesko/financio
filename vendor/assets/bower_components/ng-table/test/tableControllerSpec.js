@@ -21,15 +21,15 @@ describe('NgTableParams', function () {
     beforeEach(module('ngTable'));
 
     /*beforeEach(inject(function ($controller, $rootScope, NgTableParams) {
-        scope = $rootScope.$new();
-        params = scope.params = new NgTableParams();
-        ctrl = $controller(ngTableController, {
-            $scope: scope
-        });
-    }));
+     scope = $rootScope.$new();
+     params = scope.params = new NgTableParams();
+     ctrl = $controller(ngTableController, {
+     $scope: scope
+     });
+     }));
 
-    it('ngTableController should have parameters', inject(function (NgTableParams) {
-        var params = new NgTableParams();
-        expect(NgTableParams).toBeDefined();
-    }));*/
+     it('ngTableController should have parameters', inject(function (NgTableParams) {
+     var params = new NgTableParams();
+     expect(NgTableParams).toBeDefined();
+     }));*/
 });

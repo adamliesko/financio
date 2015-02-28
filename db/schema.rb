@@ -19,10 +19,10 @@ ActiveRecord::Schema.define(version: 20150228222408) do
   create_table "account_transactions", force: :cascade do |t|
     t.integer "category_id"
     t.integer "account_id"
-    t.float   "value"
-    t.string  "purpose"
-    t.date    "transaction_date"
-    t.string  "subject"
+    t.float "value"
+    t.string "purpose"
+    t.date "transaction_date"
+    t.string "subject"
   end
 
   add_index "account_transactions", ["account_id"], name: "index_account_transactions_on_account_id", using: :btree
@@ -30,9 +30,9 @@ ActiveRecord::Schema.define(version: 20150228222408) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer "user_id"
-    t.string  "name"
+    t.string "name"
     t.boolean "send_notifications"
-    t.float   "critical_value"
+    t.float "critical_value"
   end
 
   add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
@@ -44,15 +44,15 @@ ActiveRecord::Schema.define(version: 20150228222408) do
   add_index "categories", ["name"], name: "index_categories_on_name", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
-    t.integer  "priority",   default: 0, null: false
-    t.integer  "attempts",   default: 0, null: false
-    t.text     "handler",                null: false
-    t.text     "last_error"
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
     t.datetime "run_at"
     t.datetime "locked_at"
     t.datetime "failed_at"
-    t.string   "locked_by"
-    t.string   "queue"
+    t.string "locked_by"
+    t.string "queue"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -60,9 +60,9 @@ ActiveRecord::Schema.define(version: 20150228222408) do
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "user_logins", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "ip_address"
-    t.string   "user_agent"
+    t.integer "user_id"
+    t.string "ip_address"
+    t.string "user_agent"
     t.datetime "signed_in_at"
     t.datetime "last_seen_at"
     t.datetime "signed_out_at"
@@ -71,21 +71,21 @@ ActiveRecord::Schema.define(version: 20150228222408) do
   add_index "user_logins", ["user_id"], name: "index_user_logins_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                             default: "", null: false
-    t.string   "encrypted_password",                default: "", null: false
-    t.string   "reset_password_token"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                     default: 0,  null: false
+    t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.string   "unique_session_id",      limit: 20
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.string "unique_session_id", limit: 20
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "role"
-    t.string   "current_sign_in_token"
+    t.integer "role"
+    t.string "current_sign_in_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

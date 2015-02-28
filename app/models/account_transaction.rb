@@ -10,5 +10,4 @@ class AccountTransaction < ActiveRecord::Base
   def check_account_total
     account.check_total_value
   end
-
 end

@@ -32,31 +32,31 @@ describe('NgTableParams', function () {
     it('NgTableParams test generatePagesArray', inject(function (NgTableParams) {
         var params = new NgTableParams();
         expect(params.generatePagesArray(1, 30, 10)).toEqual([
-            { type: 'prev', number: 1, active: false },
-            { type: 'first', number: 1, active: false, current: true },
-            { type: 'page', number: 2, active: true, current: false },
-            { type: 'last', number: 3, active: true, current: false },
-            { type: 'next', number: 2, active: true }
+            {type: 'prev', number: 1, active: false},
+            {type: 'first', number: 1, active: false, current: true},
+            {type: 'page', number: 2, active: true, current: false},
+            {type: 'last', number: 3, active: true, current: false},
+            {type: 'next', number: 2, active: true}
         ]);
         expect(params.generatePagesArray(2, 30, 10)).toEqual([
-            { type: 'prev', number: 1, active: true },
-            { type: 'first', number: 1, active: true, current: false },
-            { type: 'page', number: 2, active: false, current: true },
-            { type: 'last', number: 3, active: true, current: false },
-            { type: 'next', number: 3, active: true }
+            {type: 'prev', number: 1, active: true},
+            {type: 'first', number: 1, active: true, current: false},
+            {type: 'page', number: 2, active: false, current: true},
+            {type: 'last', number: 3, active: true, current: false},
+            {type: 'next', number: 3, active: true}
         ]);
         expect(params.generatePagesArray(2, 100, 10)).toEqual([
-            { type: 'prev', number: 1, active: true },
-            { type: 'first', number: 1, active: true, current: false },
-            { type: 'page', number: 2, active: false, current: true },
-            { type: 'page', number: 3, active: true, current: false },
-            { type: 'page', number: 4, active: true, current: false },
-            { type: 'page', number: 5, active: true, current: false },
-            { type: 'page', number: 6, active: true, current: false },
-            { type: 'page', number: 7, active: true, current: false },
-            { type: 'more', active: false },
-            { type: 'last', number: 10, active: true, current: false },
-            { type: 'next', number: 3, active: true }
+            {type: 'prev', number: 1, active: true},
+            {type: 'first', number: 1, active: true, current: false},
+            {type: 'page', number: 2, active: false, current: true},
+            {type: 'page', number: 3, active: true, current: false},
+            {type: 'page', number: 4, active: true, current: false},
+            {type: 'page', number: 5, active: true, current: false},
+            {type: 'page', number: 6, active: true, current: false},
+            {type: 'page', number: 7, active: true, current: false},
+            {type: 'more', active: false},
+            {type: 'last', number: 10, active: true, current: false},
+            {type: 'next', number: 3, active: true}
         ]);
     }));
 
@@ -94,10 +94,10 @@ describe('NgTableParams', function () {
             'filter[age]': 20
         });
 
-        expect(params.filter()).toEqual({ 'name': 'test', 'age': 20 });
+        expect(params.filter()).toEqual({'name': 'test', 'age': 20});
         expect(params.filter({})).toEqual(params);
 
-        expect(params.sorting()).toEqual({ 'age': 'desc' }); // sorting only by one column
+        expect(params.sorting()).toEqual({'age': 'desc'}); // sorting only by one column
         expect(params.sorting({})).toEqual(params);
     }));
 
@@ -129,11 +129,11 @@ describe('NgTableParams', function () {
             'sorting[name]': 'asc'
         });
 
-        expect(params.orderBy()).toEqual([ '+name' ]); // for angular sorting function
+        expect(params.orderBy()).toEqual(['+name']); // for angular sorting function
 
-        params.sorting({ name: 'desc', age: 'asc' });
+        params.sorting({name: 'desc', age: 'asc'});
 
-        expect(params.orderBy()).toEqual([ '-name', '+age' ]);
+        expect(params.orderBy()).toEqual(['-name', '+age']);
     }));
 
     it('NgTableParams test settings', inject(function (NgTableParams) {
@@ -144,21 +144,21 @@ describe('NgTableParams', function () {
             $loading: false,
             data: null,
             total: 0,
-            defaultSort : 'desc',
+            defaultSort: 'desc',
             counts: [10, 25, 50, 100],
             getData: params.getData,
             getGroups: params.getGroups,
             filterDelay: 750
         });
 
-        params = new NgTableParams({}, { total: 100 });
+        params = new NgTableParams({}, {total: 100});
 
         expect(params.settings()).toEqual({
             $scope: null,
             $loading: false,
             data: null,
             total: 100,
-            defaultSort : 'desc',
+            defaultSort: 'desc',
             counts: [10, 25, 50, 100],
             getData: params.getData,
             getGroups: params.getGroups,
@@ -169,7 +169,7 @@ describe('NgTableParams', function () {
     it('NgTableParams test getData', inject(function ($q, NgTableParams) {
         var params = new NgTableParams();
         $defer = $q.defer();
-        $defer.promise.then(function(data) {
+        $defer.promise.then(function (data) {
             expect(data).toEqual([]);
         });
         params.getData($defer);

@@ -1,4 +1,4 @@
-threads Integer(ENV['MIN_THREADS']  || 1), Integer(ENV['MAX_THREADS'] || 16)
+threads Integer(ENV['MIN_THREADS'] || 1), Integer(ENV['MAX_THREADS'] || 16)
 
 workers Integer(ENV['WEB_CONCURRENCY'] || 3)
 
@@ -12,5 +12,5 @@ on_worker_boot do
   ActiveSupport.on_load(:active_record) do
     ActiveRecord::Base.establish_connection
   end
-  
+
 end

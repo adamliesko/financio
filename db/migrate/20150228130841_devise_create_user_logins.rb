@@ -2,7 +2,7 @@ class DeviseCreateUserLogins < ActiveRecord::Migration
 
   def up
     create_table :user_logins do |t|
-      t.integer  :user_id
+      t.integer :user_id
       t.string :ip_address
       t.string :user_agent
       t.datetime :signed_in_at

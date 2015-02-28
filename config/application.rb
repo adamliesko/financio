@@ -11,12 +11,12 @@ module Financio
 
     config.generators do |g|
       g.test_framework :rspec,
-        fixtures: true,
-        view_specs: false,
-        helper_specs: false,
-        routing_specs: false,
-        controller_specs: false,
-        request_specs: false
+                       fixtures: true,
+                       view_specs: false,
+                       helper_specs: false,
+                       routing_specs: false,
+                       controller_specs: false,
+                       request_specs: false
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
     config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
@@ -34,20 +34,18 @@ module Financio
 
     config.active_job.queue_adapter = :delayed_job
 
-
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-
-    Warden::Manager.after_authentication do |user, auth, opts|
-      #auth.cookies - to access cookie
+    Warden::Manager.after_authentication do |user, auth, _opts|
+      # auth.cookies - to access cookie
       token = Devise.friendly_token
       user.update_attribute :current_sign_in_token, token
-      #session
+      # session
       auth.env['rack.session'][:sign_in_token] = token
     end
 
-    Warden::Manager.before_logout do |user, auth, opts|
+    Warden::Manager.before_logout do |_user, auth, _opts|
       auth.env['rack.session'].delete :sign_in_token
     end
   end

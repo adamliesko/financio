@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
   def index
     accounts
@@ -18,13 +18,12 @@ class AccountsController < ApplicationController
 
   def update
     @account = Account.find(params[:id])
-
     respond_to do |format|
       if @account.update_attributes(account_params)
         format.html { redirect_to @account, notice: 'Account was successfully updated.' }
         format.json { head :no_content } # 204 No Content
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @account.errors, status: :unprocessable_entity }
       end
     end
@@ -35,7 +34,6 @@ class AccountsController < ApplicationController
   def account
     @account ||= accounts.find(params[:id])
   end
-
 
   def accounts
     @accounts = current_user.accounts

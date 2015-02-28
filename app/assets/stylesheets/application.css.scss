@@ -16,6 +16,12 @@
  *= require font-awesome
  *= require_self
  */
-.positive{color:green}
-.negative{color:red}
+.positive {
+  color: green
+}
+
+.negative {
+  color: red
+}
+
 @import 'ng-table/dist/ng-table';

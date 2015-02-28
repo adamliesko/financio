@@ -21,7 +21,7 @@
 //= require bootstrap-datepicker
 //= require_tree .
 
-$(document).ready(function(){
+$(document).ready(function () {
     $('.dp').datepicker(
-        {autoclose:true});
+        {autoclose: true});
 });

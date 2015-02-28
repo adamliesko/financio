@@ -1,5 +1,5 @@
 class AccountTransactionsController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
   def index
     transactions
@@ -9,14 +9,18 @@ class AccountTransactionsController < ApplicationController
   end
 
   def create
-    category = Category.find_or_create_by(:name => params[:account_transaction][:category])
-   @transaction = AccountTransaction.new(transaction_params.merge(account_id: params[:account_id], category: category))
+    category = Category.find_or_create_by(name:
+                                            params[:account_transaction][:category])
+    @transaction = AccountTransaction.new(transaction_params.merge(
+                                            account_id: params[:account_id], category: category))
     if @transaction.save
-      redirect_to account, :notice => "Transaction added"
+      redirect_to account,
+                  notice: 'An transaction hass been added to your account.'
     else
-      redirect_to account, :notice => "Your transaction has not been added, sorry :("
+      redirect_to account,
+                  notice: 'Your transaction has not been added, sorry :('
     end
-   end
+  end
 
   private
 
@@ -30,10 +34,10 @@ class AccountTransactionsController < ApplicationController
 
   def transactions
     @transactions = account.account_transactions
-    @transactions = @transactions.where(transaction_date: Date.strptime(params[:date_from], "%m/%d/%Y")..Date.strptime(params[:date_to],"%m/%d/%Y")) if (params[:date_to].present? && params[:date_from].present?)
+    @transactions = @transactions.where(transaction_date: Date.strptime(params[:date_from], '%m/%d/%Y')..Date.strptime(params[:date_to], '%m/%d/%Y')) if params[:date_to].present? && params[:date_from].present?
   end
 
   def transaction_params
-    params.require(:account_transaction).permit(:subject, :value,:purpose, :transaction_date, :category)
+    params.require(:account_transaction).permit(:subject, :value, :purpose, :transaction_date, :category)
   end
 end

@@ -1,21 +1,22 @@
 <div class="container">
   <div class="row">
     <h3>Users</h3>
+
     <div class="column">
       <table class="table">
         <tbody>
-          <% @users.each do |user| %>
+        <% @users.each do |user| %>
             <tr>
               <%= render user %>
             </tr>
-          <% end %>
+        <% end %>
         </tbody>
       </table>
     </div>
   </div>
 
   <div class="authform">
-    <%= form_for(@user=User.new,  :url => create_user_path(@user), :html => { :role => 'form'}) do |f| %>
+    <%= form_for(@user=User.new, :url => create_user_path(@user), :html => {:role => 'form'}) do |f| %>
         <h3>Create User</h3>
 
         <div class="form-group">

@@ -1,5 +1,5 @@
 var app = angular.module('financio');
-app.controller('TransactionsCtrl', ['$scope', '$resource', '$location','$timeout', 'ngTableParams', '$filter', 'TransactionsFactory', function ($scope, $resource, $location,$timeout, ngTableParams, $filter, TransactionsFactory) {
+app.controller('TransactionsCtrl', ['$scope', '$resource', '$location', '$timeout', 'ngTableParams', '$filter', 'TransactionsFactory', function ($scope, $resource, $location, $timeout, ngTableParams, $filter, TransactionsFactory) {
 
     $scope.parent = {dateFrom: '', dateTo: ''};
 
@@ -39,9 +39,9 @@ app.controller('TransactionsCtrl', ['$scope', '$resource', '$location','$timeout
                     var orderedData = params.sorting() ?
                         $filter('orderBy')(filteredData, params.orderBy()) :
                         data;
-                    $timeout(function() {
-                    params.total(orderedData.length);
-                    $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                    $timeout(function () {
+                        params.total(orderedData.length);
+                        $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
                     }, 50);
                 }
             });

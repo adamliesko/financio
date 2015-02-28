@@ -3,23 +3,24 @@
     <h2>Accounts</h2>
     <table class="table">
       <thead>
-        <th>Name</th>
-        <th>Total</th>
-        <th>Critical Value</th>
+      <th>Name</th>
+      <th>Total</th>
+      <th>Critical Value</th>
 
-        <th>Send notification?</th>
+      <th>Send notification?</th>
 
       </thead>
       <tbody>
-    <% @accounts.each do |account|%>
-      <tr>
-        <td><%= link_to "#{account.name}", account %></td>
-        <td class="<%= account.total > 0 ? 'positive' : (account.total < 0 ? 'negative':'' )%>"><strong><%= account.total%></strong></td>
-        <td ><%= best_in_place account, :critical_value, :as => :input,:classes => 'bounce_on_success' , :ok_button => "Confirm", :ok_button_class => "btn btn-primary btn-sm" %>  </td>
-        <td><%= best_in_place account, :send_notifications, :as => :select, :collection => {false => "No", true => "Yes"} %>
-                              </td>
-      </tr>
-    <%end%>
+      <% @accounts.each do |account| %>
+          <tr>
+            <td><%= link_to "#{account.name}", account %></td>
+            <td class="<%= account.total > 0 ? 'positive' : (account.total < 0 ? 'negative' : '') %>">
+              <strong><%= account.total %></strong></td>
+            <td><%= best_in_place account, :critical_value, :as => :input, :classes => 'bounce_on_success', :ok_button => "Confirm", :ok_button_class => "btn btn-primary btn-sm" %>  </td>
+            <td><%= best_in_place account, :send_notifications, :as => :select, :collection => {false => "No", true => "Yes"} %>
+            </td>
+          </tr>
+      <% end %>
       </tbody>
     </table>
   </div>
@@ -29,7 +30,7 @@
         <%= f.input :name %>
         <%= f.input :critical_value %>
         <%= f.input :send_notifications, as: :boolean, checked_value: true, unchecked_value: false %>
-        <%= f.button :submit %>
+        <%= f.button :submit ,class: 'btn btn-success'%>
     <% end %>
   </div>
 </div>

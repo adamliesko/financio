@@ -22,12 +22,13 @@ gem 'puma'
 gem 'simple_form'
 gem 'bootstrap-editable-rails'
 gem 'best_in_place'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 gem 'bower-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'mandrill_mailer'
 gem 'delayed_job_active_record'
 gem 'daemons'
+gem 'reek'
 
 group :development do
   gem 'better_errors'
