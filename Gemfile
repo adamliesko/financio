@@ -24,7 +24,7 @@ gem 'simple_form'
 gem 'bootstrap-editable-rails'
 gem 'best_in_place'
 gem "font-awesome-rails"
-
+gem 'bower-rails'
 group :development do
   gem 'better_errors'
   gem 'rails_layout'
