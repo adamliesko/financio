@@ -5,6 +5,7 @@ app.controller('TransactionsCtrl', ['$scope', '$resource', '$location','$timeout
 
     $scope.init = function (id) {
         $scope.accountId = id;
+        $scope.getTransactions();
     };
 
     $scope.loadData = function () {

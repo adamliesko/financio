@@ -27,6 +27,8 @@ gem "font-awesome-rails"
 gem 'bower-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'mandrill_mailer'
+gem 'delayed_job_active_record'
+gem 'daemons'
 
 group :development do
   gem 'better_errors'
