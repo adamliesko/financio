@@ -11,10 +11,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150228123912) do
+ActiveRecord::Schema.define(version: 20150228142401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "account_transactions", force: :cascade do |t|
+    t.integer "category_id"
+    t.integer "account_id"
+    t.float   "value"
+    t.string  "purpose"
+    t.date    "transaction_date"
+    t.string  "subject"
+  end
+
+  add_index "account_transactions", ["account_id"], name: "index_account_transactions_on_account_id", using: :btree
+  add_index "account_transactions", ["category_id"], name: "index_account_transactions_on_category_id", using: :btree
+
+  create_table "accounts", force: :cascade do |t|
+    t.integer "user_id"
+    t.string  "name"
+    t.boolean "send_notifications"
+    t.float   "critical_value"
+  end
+
+  add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+  end
+
+  add_index "categories", ["name"], name: "index_categories_on_name", using: :btree
+
+  create_table "user_logins", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "ip_address"
+    t.string   "user_agent"
+    t.datetime "signed_in_at"
+    t.datetime "last_seen_at"
+    t.datetime "signed_out_at"
+  end
+
+  add_index "user_logins", ["user_id"], name: "index_user_logins_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                             default: "", null: false

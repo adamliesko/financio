@@ -16,10 +16,15 @@ end
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'devise_security_extension'
+gem 'devise-stalkable'
 
 gem 'pg'
 gem 'puma'
 gem 'simple_form'
+gem 'bootstrap-editable-rails'
+gem 'best_in_place'
+gem "font-awesome-rails"
+
 group :development do
   gem 'better_errors'
   gem 'rails_layout'

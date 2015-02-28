@@ -11,5 +11,9 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require bootstrap-editable
+  *= require font-awesome
  *= require_self
  */
+.positive{color:green}
+.negative{color:red}
