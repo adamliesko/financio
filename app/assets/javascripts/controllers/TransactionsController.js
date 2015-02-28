@@ -1,31 +1,27 @@
 var app = angular.module('financio');
-app.controller('TransactionsCtrl', ['$scope', '$resource','$location', 'ngTableParams', '$filter', 'TransactionsFactory', function ($scope, $resource,$location, ngTableParams, $filter, TransactionsFactory) {
+app.controller('TransactionsCtrl', ['$scope', '$resource', '$location','$timeout', 'ngTableParams', '$filter', 'TransactionsFactory', function ($scope, $resource, $location,$timeout, ngTableParams, $filter, TransactionsFactory) {
 
-    $scope.parent = {dateFrom:'',dateTo:''};
+    $scope.parent = {dateFrom: '', dateTo: ''};
 
-    $scope.init = function(id)
-    {
+    $scope.init = function (id) {
         $scope.accountId = id;
-        console.log($scope.accountId);
-
-
-
     };
 
-    $scope.loadData = function() {
-        console.log(99);
-
+    $scope.loadData = function () {
         $scope.getTransactions();
+
     };
 
     $scope.loading = false;
 
     $scope.getTransactions = function () {
-        $scope.transactions = TransactionsFactory.query({account_id: $scope.accountId,date_from: $scope.parent.dateFrom,date_to: $scope.parent.dateTo});
+        $scope.transactions = TransactionsFactory.query({
+            account_id: $scope.accountId,
+            date_from: $scope.parent.dateFrom,
+            date_to: $scope.parent.dateTo
+        });
 
         $scope.transactions.$promise.then(function (data) {
-            console.log($scope.transactions);
-
             $scope.transactionsTable = new ngTableParams({
                 page: 1,            // show first page
                 count: 10,          // count per page
@@ -42,11 +38,15 @@ app.controller('TransactionsCtrl', ['$scope', '$resource','$location', 'ngTableP
                     var orderedData = params.sorting() ?
                         $filter('orderBy')(filteredData, params.orderBy()) :
                         data;
+                    $timeout(function() {
                     params.total(orderedData.length);
                     $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                    }, 50);
                 }
             });
         })
+        $('.sortable').click();
+        $scope.transactionsTable.reload();
     };
 
 
