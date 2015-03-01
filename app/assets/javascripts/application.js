@@ -23,5 +23,5 @@
 
 $(document).ready(function () {
     $('.dp').datepicker(
-        {autoclose: true});
+        {autoclose: true,format: 'dd-mm-yyyy'});
 });

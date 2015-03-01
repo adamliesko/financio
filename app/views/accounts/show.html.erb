@@ -39,7 +39,7 @@
             {{transaction.purpose}}
           </td>
           <td data-title="'Date'" sortable="'transaction_date'">
-            {{transaction.transaction_date}}
+            {{transaction.transaction_date| date : 'MM-dd-yyyy'}}
           </td>
         </tr>
 
