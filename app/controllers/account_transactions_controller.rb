@@ -15,7 +15,7 @@ class AccountTransactionsController < ApplicationController
                                             account_id: params[:account_id], category: category))
     if @transaction.save
       redirect_to account,
-                  notice: 'An transaction hass been added to your account.'
+                  notice: 'A transaction has been added to your account.'
     else
       redirect_to account,
                   notice: 'Your transaction has not been added, sorry :('
