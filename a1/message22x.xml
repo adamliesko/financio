@@ -1,0 +1,1 @@
+"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<account-transaction>\n  <id type=\"integer\">3232</id>\n  <category-id type=\"integer\">1</category-id>\n  <account-id type=\"integer\">4</account-id>\n  <value type=\"float\">-121.0</value>\n  <purpose>xxx</purpose>\n  <transaction-date type=\"date\">2015-02-28</transaction-date>\n  <subject>lujza</subject>\n</account-transaction>\n"

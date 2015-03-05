@@ -18,6 +18,7 @@ module Financio
                        request_specs: false
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
+
     config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -47,5 +48,6 @@ module Financio
     Warden::Manager.before_logout do |_user, auth, _opts|
       auth.env['rack.session'].delete :sign_in_token
     end
+
   end
 end

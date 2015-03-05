@@ -28,7 +28,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'mandrill_mailer'
 gem 'delayed_job_active_record'
 gem 'daemons'
-
+gem 'ox'
 group :development do
   gem 'better_errors'
   gem 'rails_layout'
